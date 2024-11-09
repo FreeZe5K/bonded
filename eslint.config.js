@@ -29,5 +29,26 @@ export default ts.config(
   },
   {
     ignores: ['build/', '.svelte-kit/', 'dist/'],
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-inferrable-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-var': 'off',
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: "VariableDeclaration[kind='var'][declare!=true]",
+          message: 'Unexpected var, use let or const instead.',
+        },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^$$(Props|Events|Slots|Generic)$',
+        },
+      ],
+    },
   }
 )
